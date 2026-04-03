@@ -1,41 +1,138 @@
-# Projeto Praticas Profissionais em ADS
-## Grupo 4: Alan Araujo Paiva; Felipe Amorim; Ricardo Pereira
+﻿# Academia Finder
 
-# Projeto AcademiaFinder 🏋️
+Aplicação web para descobrir academias, comparar opções e realizar agendamentos.
 
-> "Sua próxima academia está a um clique de distância"
+## Integrantes
+- Alan Araújo Paiva — RA 10423944
+- Felipe Amorim — RA 10441136
+- Ricardo Pereira — RA 10442905
 
-Plataforma digital para descoberta, comparação e agendamento de academias no Brasil.
+Universidade Presbiteriana Mackenzie  
+Curso de Análise e Desenvolvimento de Sistemas
 
-## 🚧 Status
+## Tecnologias empregadas
+### Frontend
+- React 19
+- Vite 8
+- CSS customizado (tema responsivo desktop/mobile)
+- OpenLayers (mapa em tempo real)
+- Lucide React (ícones)
 
-Projeto em desenvolvimento — turma 2026.1 | Mackenzie ADS
+### Backend
+- Node.js + Express 5
+- Supabase (PostgreSQL + API)
+- Cloudinary (imagens das academias)
+- CORS + dotenv
 
-## 🛠️ Tecnologias
+### Serviços auxiliares usados no app
+- Nominatim (OpenStreetMap) para geocodificação de endereços e cálculo de distância
 
-- JavaScript
-- Google Maps API
-- Stripe / PagSeguro
-- Firebase / SendGrid
+## Funcionalidades implementadas
+- Login (credenciais de demonstração)
+- Home com academias vindas do backend
+- Mapa em tempo real com localização do usuário
+- Detalhes da academia (preço, avaliação, distância, imagem)
+- Comparação entre academias (até 4)
+- Agendamento com calendário e horários
+- Perfil com agendamentos e avaliações salvas
+- Cadastro de avaliações/comentários no backend
+- Leitura de fotos via Cloudinary (com fallback)
+- Botão de sair global na aplicação
 
-## ✨ Funcionalidades previstas
+## Estrutura de pastas
+```text
+academiafinder/
+  Backend/
+    server.js
+    src/
+      config/
+      controllers/
+      routes/
+    sql/
+      create_avaliacoes.sql
+  Frontend/
+    src/
+      Academia/
+      components/
+      services/
+      styles/
+```
 
-- Busca por geolocalização com mapa interativo
-- Tour virtual 360° das instalações
-- Comparação de até 4 academias lado a lado
-- Agendamento de visitas e aulas experimentais
-- Sistema de avaliações verificadas
-- Algoritmo de recomendação personalizado
+## Pré-requisitos
+- Node.js 20+
+- npm 10+
+- Projeto Supabase configurado com tabelas da aplicação
+- Conta Cloudinary (opcional, mas recomendada para fotos)
 
-## 👥 Equipe
+## Configuração de ambiente
+### Backend/.env
+```env
+CLOUDINARY_CLOUD_NAME=SEU_CLOUD_NAME
+CLOUDINARY_API_KEY=SUA_API_KEY
+CLOUDINARY_API_SECRET=SUA_API_SECRET
+CLOUDINARY_ASSET_FOLDER=Assets
+```
 
-| Nome | RA | Papel |
-|---|---|---|
-| Alan Araújo Paiva | 10423944 | CTO / Tecnologia |
-| Felipe Amorim | 10441136 | CTO / Tecnologia |
-| Ricardo Pereira | 10442905 | CTO / Tecnologia |
+### Frontend/.env
+```env
+VITE_API_URL=http://localhost:3000
+```
 
-## 🔗 Links
+## Banco de dados (Supabase)
+Garanta as tabelas principais:
+- `usuarios`
+- `academias`
+- `agendamentos`
+- `avaliacoes`
 
-- [Landing Page MVP](https://ricardopra.wixsite.com/academiafinder)
-- [Vídeo Demonstração](https://youtu.be/qpTfLMp9sl0)
+Para criar a tabela de avaliações, execute no SQL Editor do Supabase:
+- Arquivo: `Backend/sql/create_avaliacoes.sql`
+
+## Como rodar localmente
+### 1) Backend
+```bash
+cd Backend
+npm install
+npm run dev
+```
+Servidor em `http://localhost:3000`
+
+### 2) Frontend
+```bash
+cd Frontend
+npm install
+npm run dev
+```
+Aplicação em `http://localhost:5173`
+
+## Credenciais de login (demonstração)
+- Login: `teste`
+- Senha: `teste`
+
+## Scripts úteis
+### Backend
+- `npm run dev` — inicia backend
+- `npm start` — inicia backend
+
+### Frontend
+- `npm run dev` — inicia frontend
+- `npm run lint` — valida código
+- `npm run build` — build de produção
+
+## Endpoints principais do backend
+- `POST /auth/login`
+- `GET /academias`
+- `POST /agendamentos`
+- `GET /agendamentos`
+- `POST /avaliacoes`
+- `GET /avaliacoes`
+
+## Publicação no GitHub
+Após revisar alterações:
+```bash
+git add .
+git commit -m "feat: atualiza documentação e versão funcional do Academia Finder"
+git push origin main
+```
+
+Se sua branch padrão não for `main`, substitua pelo nome correto.
