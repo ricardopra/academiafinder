@@ -1,4 +1,8 @@
-﻿# Academia Finder
+
+<img width="106" height="106" alt="mackenzie" src="https://github.com/user-attachments/assets/aff37f26-35da-4179-bb67-44abd67710b0" />
+
+ 
+ # Academia Finder
 
 Aplicação web para descobrir academias, comparar opções e realizar agendamentos.
 
