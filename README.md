@@ -2,6 +2,7 @@
 
 Aplicação web para descobrir academias, comparar opções e realizar agendamentos.
 
+
 ## Integrantes
 - Alan Araújo Paiva — RA 10423944
 - Felipe Amorim — RA 10441136
@@ -39,6 +40,10 @@ Curso de Análise e Desenvolvimento de Sistemas
 - Leitura de fotos via Cloudinary (com fallback)
 - Botão de sair global na aplicação
 
+## Diagrama de Implantação
+
+<img width="1800" height="1050" alt="academiafinder_diagrama_implantacao_bonito" src="https://github.com/user-attachments/assets/305b9550-b750-4bd5-8b97-4df7acef2b82" />
+
 ## Estrutura de pastas
 ```text
 academiafinder/
@@ -64,29 +69,12 @@ academiafinder/
 - Projeto Supabase configurado com tabelas da aplicação
 - Conta Cloudinary (opcional, mas recomendada para fotos)
 
-## Configuração de ambiente
-### Backend/.env
-```env
-CLOUDINARY_CLOUD_NAME=SEU_CLOUD_NAME
-CLOUDINARY_API_KEY=SUA_API_KEY
-CLOUDINARY_API_SECRET=SUA_API_SECRET
-CLOUDINARY_ASSET_FOLDER=Assets
-```
-
-### Frontend/.env
-```env
-VITE_API_URL=http://localhost:3000
-```
-
 ## Banco de dados (Supabase)
-Garanta as tabelas principais:
+Tabelas principais:
 - `usuarios`
 - `academias`
 - `agendamentos`
 - `avaliacoes`
-
-Para criar a tabela de avaliações, execute no SQL Editor do Supabase:
-- Arquivo: `Backend/sql/create_avaliacoes.sql`
 
 ## Como rodar localmente
 ### 1) Backend
@@ -127,40 +115,7 @@ Aplicação em `http://localhost:5173`
 - `POST /avaliacoes`
 - `GET /avaliacoes`
 
-## Publicação no GitHub
-Após revisar alterações:
-```bash
-git add .
-git commit -m "feat: atualiza documentação e versão funcional do Academia Finder"
-git push origin main
-```
+### Backend e Frontend na Vercel
+1. Publicado na Vercel pelo link: `https://academiafinder-web.vercel.app/`
 
-Se sua branch padrão não for `main`, substitua pelo nome correto.
 
-## Deploy na Vercel (funcional)
-Recomendado criar **2 projetos** na Vercel: um para o backend e outro para o frontend.
-
-### 1) Backend na Vercel (`academiafinder-api`)
-1. Em Vercel, clique em **Add New Project**.
-2. Selecione este repositório.
-3. Em **Root Directory**, escolha `Backend`.
-4. Vercel detectará `vercel.json` do backend.
-5. Configure as variáveis de ambiente:
-   - `CLOUDINARY_CLOUD_NAME`
-   - `CLOUDINARY_API_KEY`
-   - `CLOUDINARY_API_SECRET`
-   - `CLOUDINARY_ASSET_FOLDER` (ex.: `Assets`)
-   - `CORS_ORIGIN` (URL do frontend na Vercel, ex.: `https://academiafinder-web.vercel.app`)
-6. Faça o deploy.
-7. Copie a URL gerada da API, ex.: `https://academiafinder-api.vercel.app`.
-
-### 2) Frontend na Vercel (`academiafinder-web`)
-1. Crie outro projeto na Vercel com o mesmo repositório.
-2. Em **Root Directory**, escolha `Frontend`.
-3. Em variáveis de ambiente, adicione:
-   - `VITE_API_URL` = URL do backend publicado (ex.: `https://academiafinder-api.vercel.app`)
-4. Faça o deploy.
-
-### 3) Ajuste final
-- Após publicar os 2 projetos, teste login, listagem de academias, comparação, agendamento e avaliações.
-- Se alterar qualquer variável, faça **Redeploy** no projeto correspondente.
