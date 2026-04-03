@@ -1,4 +1,4 @@
-﻿const express = require('express')
+const express = require('express')
 const cors = require('cors')
 require('dotenv').config()
 const supabase = require('./src/config/supabase')
@@ -10,7 +10,8 @@ const avaliacoesRoutes = require('./src/routes/avaliacoesRoutes')
 
 const app = express()
 
-app.use(cors({ origin: ['http://localhost:5173'] }))
+const corsOrigin = process.env.CORS_ORIGIN || '*'
+app.use(cors({ origin: corsOrigin === '*' ? true : corsOrigin.split(',').map((v) => v.trim()) }))
 app.use(express.json())
 
 app.get('/', (req, res) => {
@@ -94,10 +95,13 @@ app.use('/academias', academiasRoutes)
 app.use('/agendamentos', agendamentosRoutes)
 app.use('/avaliacoes', avaliacoesRoutes)
 
-app.listen(3000, () => {
-  console.log('Servidor rodando na porta 3000')
-  seedAcademiasFicticias().catch((erro) => {
-    console.error('Falha inesperada no seed:', erro.message)
-  })
-})
+module.exports = app
 
+if (process.env.VERCEL !== '1') {
+  app.listen(3000, () => {
+    console.log('Servidor rodando na porta 3000')
+    seedAcademiasFicticias().catch((erro) => {
+      console.error('Falha inesperada no seed:', erro.message)
+    })
+  })
+}

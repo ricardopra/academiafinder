@@ -136,3 +136,31 @@ git push origin main
 ```
 
 Se sua branch padrão não for `main`, substitua pelo nome correto.
+
+## Deploy na Vercel (funcional)
+Recomendado criar **2 projetos** na Vercel: um para o backend e outro para o frontend.
+
+### 1) Backend na Vercel (`academiafinder-api`)
+1. Em Vercel, clique em **Add New Project**.
+2. Selecione este repositório.
+3. Em **Root Directory**, escolha `Backend`.
+4. Vercel detectará `vercel.json` do backend.
+5. Configure as variáveis de ambiente:
+   - `CLOUDINARY_CLOUD_NAME`
+   - `CLOUDINARY_API_KEY`
+   - `CLOUDINARY_API_SECRET`
+   - `CLOUDINARY_ASSET_FOLDER` (ex.: `Assets`)
+   - `CORS_ORIGIN` (URL do frontend na Vercel, ex.: `https://academiafinder-web.vercel.app`)
+6. Faça o deploy.
+7. Copie a URL gerada da API, ex.: `https://academiafinder-api.vercel.app`.
+
+### 2) Frontend na Vercel (`academiafinder-web`)
+1. Crie outro projeto na Vercel com o mesmo repositório.
+2. Em **Root Directory**, escolha `Frontend`.
+3. Em variáveis de ambiente, adicione:
+   - `VITE_API_URL` = URL do backend publicado (ex.: `https://academiafinder-api.vercel.app`)
+4. Faça o deploy.
+
+### 3) Ajuste final
+- Após publicar os 2 projetos, teste login, listagem de academias, comparação, agendamento e avaliações.
+- Se alterar qualquer variável, faça **Redeploy** no projeto correspondente.
