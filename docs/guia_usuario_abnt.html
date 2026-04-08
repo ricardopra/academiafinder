@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Academia Finder - Guia do Usuario</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 3cm 2cm 2cm 3cm;
+    }
+
+    :root {
+      --text: #111111;
+      --muted: #444444;
+      --border: #d8d8d8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #e9e9e9;
+      color: var(--text);
+      font-family: "Times New Roman", Times, serif;
+      font-size: 12pt;
+      line-height: 1.5;
+    }
+
+    main {
+      max-width: 210mm;
+      margin: 0 auto;
+      background: #ffffff;
+      min-height: 100vh;
+      padding: 0;
+      box-shadow: 0 0 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .page {
+      padding: 3cm 2cm 2cm 3cm;
+      min-height: 297mm;
+      page-break-after: always;
+    }
+
+    .page:last-child {
+      page-break-after: auto;
+    }
+
+    .cover {
+      display: flex;
+      flex-direction: column;
+      min-height: calc(297mm - 5cm);
+      text-align: center;
+    }
+
+    .cover-top {
+      margin-top: 2cm;
+    }
+
+    .cover-middle {
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+
+    .cover-bottom {
+      margin-top: auto;
+    }
+
+    h1, h2, h3, h4 {
+      margin: 0 0 12pt 0;
+      font-weight: bold;
+    }
+
+    h1 {
+      font-size: 12pt;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 12pt;
+      text-transform: uppercase;
+      margin-top: 18pt;
+    }
+
+    h3 {
+      font-size: 12pt;
+      margin-top: 16pt;
+    }
+
+    h4 {
+      font-size: 12pt;
+      margin-top: 14pt;
+    }
+
+    p {
+      margin: 0 0 12pt 0;
+      text-align: justify;
+      text-indent: 1.25cm;
+    }
+
+    .no-indent {
+      text-indent: 0;
+    }
+
+    .center {
+      text-align: center;
+      text-indent: 0;
+    }
+
+    .spaced {
+      margin-top: 24pt;
+    }
+
+    ul, ol {
+      margin: 0 0 12pt 1.25cm;
+      padding-left: 1cm;
+    }
+
+    li {
+      margin-bottom: 6pt;
+      text-align: justify;
+    }
+
+    .toc {
+      list-style: none;
+      margin-left: 0;
+      padding-left: 0;
+    }
+
+    .toc li {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px dotted var(--border);
+      padding-bottom: 4px;
+    }
+
+    .toc span:last-child {
+      white-space: nowrap;
+    }
+
+    .block {
+      margin-bottom: 12pt;
+    }
+
+    .block-title {
+      font-weight: bold;
+      text-indent: 0;
+      margin-bottom: 6pt;
+    }
+
+    .mono {
+      font-family: "Courier New", Courier, monospace;
+      font-size: 10.5pt;
+      background: #f7f7f7;
+      border: 1px solid var(--border);
+      padding: 10pt 12pt;
+      white-space: pre-wrap;
+      text-indent: 0;
+    }
+
+    .small {
+      font-size: 11pt;
+      color: var(--muted);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0 0 12pt 0;
+      font-size: 11pt;
+    }
+
+    th, td {
+      border: 1px solid #999999;
+      padding: 6pt 8pt;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: #f3f3f3;
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+      }
+
+      main {
+        box-shadow: none;
+        max-width: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="page cover">
+      <div class="cover-top">
+        <p class="center no-indent"><strong>UNIVERSIDADE PRESBITERIANA MACKENZIE</strong></p>
+        <p class="center no-indent"><strong>Curso de Analise e Desenvolvimento de Sistemas</strong></p>
+      </div>
+
+      <div class="cover-middle">
+        <p class="center no-indent"><strong>ACADEMIA FINDER</strong></p>
+        <p class="center no-indent"><strong>Guia do usuario e documentacao tecnico-funcional</strong></p>
+      </div>
+
+      <div class="cover-bottom">
+        <p class="center no-indent">Alan Araujo Paiva - RA 10423944</p>
+        <p class="center no-indent">Felipe Amorim - RA 10441136</p>
+        <p class="center no-indent">Ricardo Pereira - RA 10442905</p>
+        <p class="center no-indent spaced">Sao Paulo</p>
+        <p class="center no-indent">2026</p>
+      </div>
+    </section>
+
+    <section class="page">
+      <h1>SUMARIO</h1>
+      <ol class="toc">
+        <li><span>1. Apresentacao</span><span>3</span></li>
+        <li><span>2. Objetivos do sistema</span><span>3</span></li>
+        <li><span>3. Visao geral da solucao</span><span>3</span></li>
+        <li><span>4. Publico-alvo</span><span>4</span></li>
+        <li><span>5. Requisitos para utilizacao</span><span>4</span></li>
+        <li><span>6. Instalacao e execucao</span><span>5</span></li>
+        <li><span>7. Guia de uso do aplicativo</span><span>6</span></li>
+        <li><span>8. Detalhes tecnicos da implementacao</span><span>9</span></li>
+        <li><span>9. Estrutura do projeto</span><span>10</span></li>
+        <li><span>10. API e integracoes</span><span>11</span></li>
+        <li><span>11. Banco de dados</span><span>12</span></li>
+        <li><span>12. Limitacoes conhecidas</span><span>12</span></li>
+        <li><span>13. Boas praticas de operacao</span><span>13</span></li>
+        <li><span>14. Solucao de problemas</span><span>13</span></li>
+        <li><span>15. Conclusao</span><span>14</span></li>
+        <li><span>16. Referencias</span><span>14</span></li>
+      </ol>
+
+      <p class="small no-indent">
+        Observacao: a numeracao de paginas e indicativa para facilitar a montagem final no Word ou em PDF.
+      </p>
+    </section>
+
+    <section class="page">
+      <h1>1. APRESENTACAO</h1>
+      <p>
+        O Academia Finder e uma aplicacao web desenvolvida com a finalidade de permitir a descoberta de academias,
+        comparacao entre opcoes disponiveis, consulta visual em mapa, registro de agendamentos e envio de avaliacoes.
+        O sistema foi construido com interface em React e servicos de backend em Node.js com Express, utilizando
+        Supabase como camada de persistencia de dados e Cloudinary para fornecimento de imagens.
+      </p>
+      <p>
+        Este documento foi elaborado como uma versao pronta para entrega academica, reunindo informacoes voltadas ao
+        usuario final e, ao mesmo tempo, detalhes tecnicos da solucao implementada no repositorio.
+      </p>
+
+      <h1>2. OBJETIVOS DO SISTEMA</h1>
+      <p>O sistema possui os seguintes objetivos principais:</p>
+      <ul>
+        <li>permitir que o usuario encontre academias proximas;</li>
+        <li>oferecer consulta de preco, endereco, distancia estimada e avaliacao;</li>
+        <li>disponibilizar comparacao entre academias selecionadas;</li>
+        <li>registrar agendamentos de visitas, aulas experimentais e atendimentos;</li>
+        <li>armazenar avaliacoes e comentarios do usuario;</li>
+        <li>apresentar experiencia responsiva com foco em navegacao simples.</li>
+      </ul>
+
+      <h1>3. VISAO GERAL DA SOLUCAO</h1>
+      <p>O Academia Finder funciona em dois blocos principais:</p>
+      <ul>
+        <li><strong>Frontend:</strong> interface do usuario desenvolvida em React com Vite.</li>
+        <li><strong>Backend:</strong> API REST em Node.js e Express integrada ao Supabase.</li>
+      </ul>
+      <p>O fluxo operacional padrao ocorre da seguinte maneira:</p>
+      <ol>
+        <li>o usuario realiza login com credenciais demonstrativas;</li>
+        <li>o frontend consulta a API para obter academias, agendamentos e avaliacoes;</li>
+        <li>a interface organiza os dados em telas de inicio, detalhes, comparacao, agenda e perfil;</li>
+        <li>o usuario pode registrar novos agendamentos e avaliacoes;</li>
+        <li>o backend persiste os dados no Supabase e devolve o resultado para atualizacao da interface.</li>
+      </ol>
+
+      <h1>4. PUBLICO-ALVO</h1>
+      <ul>
+        <li>usuarios finais que desejam localizar academias e comparar alternativas;</li>
+        <li>avaliadores academicos e docentes que precisem demonstrar as funcionalidades do projeto;</li>
+        <li>desenvolvedores e mantenedores responsaveis pela evolucao da aplicacao.</li>
+      </ul>
+    </section>
+
+    <section class="page">
+      <h1>5. REQUISITOS PARA UTILIZACAO</h1>
+
+      <h3>5.1 Requisitos de software</h3>
+      <ul>
+        <li>Node.js 20 ou superior;</li>
+        <li>npm 10 ou superior;</li>
+        <li>navegador web atualizado, preferencialmente Chrome, Edge ou Firefox;</li>
+        <li>acesso a internet para consumo de mapas, geolocalizacao e servicos externos.</li>
+      </ul>
+
+      <h3>5.2 Requisitos de servicos externos</h3>
+      <ul>
+        <li>projeto Supabase com as tabelas <strong>usuarios</strong>, <strong>academias</strong>, <strong>agendamentos</strong> e <strong>avaliacoes</strong>;</li>
+        <li>conta Cloudinary, recomendada para fornecimento das imagens das academias;</li>
+        <li>acesso ao servico Nominatim para geocodificacao de enderecos.</li>
+      </ul>
+
+      <h3>5.3 Requisitos de uso</h3>
+      <ul>
+        <li>computador com acesso local ao repositorio para execucao em ambiente de desenvolvimento;</li>
+        <li>permissao do navegador para geolocalizacao, caso o usuario deseje visualizar sua posicao no mapa.</li>
+      </ul>
+
+      <h1>6. INSTALACAO E EXECUCAO</h1>
+
+      <h3>6.1 Backend</h3>
+      <div class="mono">cd Backend
+npm install
+npm run dev</div>
+      <p class="no-indent">Endereco padrao: <strong>http://localhost:3000</strong>.</p>
+
+      <h3>6.2 Frontend</h3>
+      <div class="mono">cd Frontend
+npm install
+npm run dev</div>
+      <p class="no-indent">Endereco padrao: <strong>http://localhost:5173</strong>.</p>
+
+      <h3>6.3 Variaveis de ambiente</h3>
+      <p class="block-title">Frontend (.env)</p>
+      <div class="mono">VITE_API_URL=http://localhost:3000</div>
+
+      <p class="block-title">Backend (.env)</p>
+      <div class="mono">CLOUDINARY_CLOUD_NAME=SEU_CLOUD_NAME
+CLOUDINARY_API_KEY=SUA_API_KEY
+CLOUDINARY_API_SECRET=SUA_API_SECRET
+CLOUDINARY_ASSET_FOLDER=Assets
+CORS_ORIGIN=http://localhost:5173</div>
+
+      <p>
+        Observacao tecnica: o repositorio atual possui configuracoes sensiveis embutidas em alguns arquivos do backend.
+        Para uso real em producao, recomenda-se migrar todas as credenciais para variaveis de ambiente e revogar chaves expostas.
+      </p>
+
+      <h3>6.4 Credenciais de demonstracao</h3>
+      <ul>
+        <li>login: <strong>teste</strong></li>
+        <li>senha: <strong>teste</strong></li>
+      </ul>
+    </section>
+
+    <section class="page">
+      <h1>7. GUIA DE USO DO APLICATIVO</h1>
+
+      <h3>7.1 Tela de login</h3>
+      <p>
+        Ao abrir a aplicacao, o usuario encontra a tela de autenticacao. Nela devem ser informados o login e a senha de
+        demonstracao. Em caso de dados incorretos, a interface exibe mensagem de erro. Em caso de sucesso, o sistema cria
+        ou recupera um usuario de teste no banco de dados e libera o acesso ao aplicativo.
+      </p>
+
+      <h3>7.2 Tela inicial</h3>
+      <p>A tela inicial apresenta:</p>
+      <ul>
+        <li>mensagem de boas-vindas;</li>
+        <li>campo de busca por bairro, cidade ou endereco;</li>
+        <li>chips de filtragem por categoria ou modalidade;</li>
+        <li>quantidade de academias encontradas;</li>
+        <li>mapa em tempo real com foco na cidade de Sao Paulo;</li>
+        <li>lista de academias em formato de cartoes.</li>
+      </ul>
+
+      <h3>7.3 Busca e filtros</h3>
+      <p>
+        O campo de busca compara o texto digitado com nome, endereco, bairro e cidade. O filtro por categoria considera
+        as modalidades cadastradas em cada academia. O comportamento e cumulativo, aplicando busca textual e categoria ao mesmo tempo.
+      </p>
+
+      <h3>7.4 Mapa em tempo real</h3>
+      <p>
+        O mapa utiliza OpenLayers e OpenStreetMap. Quando a permissao de geolocalizacao e concedida, a aplicacao acompanha
+        a posicao do usuario e atualiza a visualizacao. Caso a geolocalizacao nao esteja disponivel, o mapa permanece com foco padrao em Sao Paulo.
+      </p>
+
+      <h3>7.5 Tela de detalhes</h3>
+      <p>Ao selecionar uma academia, o usuario visualiza:</p>
+      <ul>
+        <li>imagem principal;</li>
+        <li>nome da academia;</li>
+        <li>endereco;</li>
+        <li>avaliacao;</li>
+        <li>distancia estimada;</li>
+        <li>preco mensal.</li>
+      </ul>
+
+      <h3>7.6 Tela de comparacao</h3>
+      <p>
+        Na aba de comparacao, o aplicativo permite manter ate quatro academias para analise lado a lado, com comparacao
+        por preco, avaliacao, distancia e endereco, alem de uma heuristica de melhor custo-beneficio.
+      </p>
+    </section>
+
+    <section class="page">
+      <h1>7. GUIA DE USO DO APLICATIVO</h1>
+
+      <h3>7.7 Tela de agenda</h3>
+      <p>Na aba Agenda, o sistema disponibiliza:</p>
+      <ul>
+        <li>selecao da academia desejada;</li>
+        <li>calendario mensal;</li>
+        <li>tipos de atendimento, como aula experimental, visita guiada, avaliacao fisica e treino funcional;</li>
+        <li>horarios disponiveis com indicacao de vagas;</li>
+        <li>resumo do agendamento antes da confirmacao.</li>
+      </ul>
+      <p>
+        Ao confirmar, o sistema envia para a API os campos de usuario, academia, data, horario e tipo. Em caso de sucesso,
+        a interface exibe mensagem de confirmacao.
+      </p>
+
+      <h3>7.8 Tela de perfil</h3>
+      <p>Na aba Perfil, o usuario encontra:</p>
+      <ul>
+        <li>identificacao visual e dados basicos;</li>
+        <li>resumo de quantidade de agendamentos, avaliacoes e academias;</li>
+        <li>listagem de seus agendamentos;</li>
+        <li>formulario de envio de avaliacao;</li>
+        <li>historico de avaliacoes registradas;</li>
+        <li>secoes de privacidade, LGPD, ajuda e suporte.</li>
+      </ul>
+
+      <h3>7.9 Encerramento da sessao</h3>
+      <p>
+        O botao Sair, exibido na barra superior da aplicacao, limpa os estados locais da sessao e retorna o usuario para a tela de login.
+      </p>
+
+      <h1>8. DETALHES TECNICOS DA IMPLEMENTACAO</h1>
+
+      <h3>8.1 Frontend</h3>
+      <p>O frontend foi desenvolvido com React 19, Vite 8, CSS customizado, OpenLayers e Lucide React.</p>
+      <p>
+        A logica principal esta centralizada em <strong>Frontend/src/App.jsx</strong>, arquivo responsavel por autenticar o usuario,
+        carregar academias, agendamentos e avaliacoes, calcular medias, calcular distancias e controlar a navegacao entre as telas.
+      </p>
+
+      <h3>8.2 Backend</h3>
+      <p>O backend foi desenvolvido com Node.js, Express 5, Supabase JavaScript SDK, Cloudinary SDK, CORS e dotenv.</p>
+      <p>
+        O ponto de entrada efetivamente utilizado e <strong>Backend/server.js</strong>, que configura CORS, define a rota raiz,
+        implementa o endpoint de login e registra as rotas de usuarios, academias, agendamentos e avaliacoes.
+      </p>
+
+      <h3>8.3 Geolocalizacao e distancia</h3>
+      <p>
+        O sistema utiliza geolocalizacao do navegador para identificar a posicao do usuario e o servico Nominatim para converter
+        enderecos em coordenadas geograficas. Quando a geocodificacao falha, a aplicacao adota coordenadas de fallback e, em ultimo caso,
+        uma distancia estimada.
+      </p>
+    </section>
+
+    <section class="page">
+      <h1>9. ESTRUTURA DO PROJETO</h1>
+      <div class="mono">academiafinder/
+|-- Backend/
+|   |-- server.js
+|   |-- package.json
+|   |-- sql/
+|   |   `-- create_avaliacoes.sql
+|   `-- src/
+|       |-- app.js
+|       |-- config/
+|       |-- controllers/
+|       `-- routes/
+|-- Frontend/
+|   |-- package.json
+|   |-- index.html
+|   `-- src/
+|       |-- App.jsx
+|       |-- services/
+|       |-- styles/
+|       |-- components/
+|       `-- Academia/
+`-- README.md</div>
+
+      <h1>10. API E INTEGRACOES</h1>
+
+      <h3>10.1 Endpoints em uso pelo frontend</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Metodo</th>
+            <th>Endpoint</th>
+            <th>Finalidade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>POST</td><td>/auth/login</td><td>Autenticacao demonstrativa do usuario</td></tr>
+          <tr><td>GET</td><td>/academias</td><td>Listagem de academias</td></tr>
+          <tr><td>GET</td><td>/agendamentos</td><td>Consulta de agendamentos</td></tr>
+          <tr><td>POST</td><td>/agendamentos</td><td>Registro de agendamento</td></tr>
+          <tr><td>GET</td><td>/avaliacoes</td><td>Consulta de avaliacoes</td></tr>
+          <tr><td>POST</td><td>/avaliacoes</td><td>Registro de avaliacao</td></tr>
+        </tbody>
+      </table>
+
+      <h3>10.2 Integracoes externas</h3>
+      <ul>
+        <li>Supabase para persistencia de dados;</li>
+        <li>Cloudinary para armazenamento e entrega de imagens;</li>
+        <li>Nominatim e OpenStreetMap para geocodificacao e mapa;</li>
+        <li>OpenLayers para renderizacao cartografica.</li>
+      </ul>
+
+      <h1>11. BANCO DE DADOS</h1>
+      <p>O sistema pressupoe a existencia das tabelas <strong>usuarios</strong>, <strong>academias</strong>, <strong>agendamentos</strong> e <strong>avaliacoes</strong>.</p>
+      <p>O script <strong>Backend/sql/create_avaliacoes.sql</strong> cria a tabela de avaliacoes com os campos id, usuario_id, academia_id, nota, comentario e created_at.</p>
+
+      <h1>12. LIMITACOES CONHECIDAS</h1>
+      <ul>
+        <li>o arquivo <strong>Backend/src/app.js</strong> nao reflete a configuracao completa usada por <strong>Backend/server.js</strong>;</li>
+        <li>existem credenciais definidas diretamente em arquivos do backend, o que nao e adequado para producao;</li>
+        <li>a autenticacao e demonstrativa, sem JWT real e sem controle de sessao robusto;</li>
+        <li>o calculo de distancia pode usar estimativas quando o endereco nao e geocodificado com sucesso;</li>
+        <li>a agenda do frontend utiliza disponibilidades ficticias para simulacao de horarios;</li>
+        <li>o projeto nao apresenta bateria formal de testes automatizados.</li>
+      </ul>
+    </section>
+
+    <section class="page">
+      <h1>13. BOAS PRATICAS DE OPERACAO</h1>
+      <ul>
+        <li>manter o backend ativo antes de iniciar o frontend;</li>
+        <li>revisar permissao de geolocalizacao no navegador;</li>
+        <li>garantir que as tabelas do Supabase estejam corretamente criadas;</li>
+        <li>armazenar credenciais exclusivamente em variaveis de ambiente;</li>
+        <li>usar a API publicada em HTTPS em cenarios de demonstracao externa;</li>
+        <li>validar manualmente os fluxos de login, listagem, comparacao, agendamento e avaliacao apos alteracoes.</li>
+      </ul>
+
+      <h1>14. SOLUCAO DE PROBLEMAS</h1>
+
+      <h3>14.1 O frontend nao carrega dados</h3>
+      <ul>
+        <li>backend nao iniciado;</li>
+        <li>VITE_API_URL configurado incorretamente;</li>
+        <li>CORS nao liberado no backend;</li>
+        <li>falha de acesso ao Supabase.</li>
+      </ul>
+
+      <h3>14.2 O mapa nao mostra minha localizacao</h3>
+      <ul>
+        <li>permissao de geolocalizacao negada no navegador;</li>
+        <li>dispositivo sem acesso a localizacao;</li>
+        <li>falha temporaria do navegador.</li>
+      </ul>
+
+      <h3>14.3 As imagens das academias nao aparecem</h3>
+      <ul>
+        <li>Cloudinary nao configurado;</li>
+        <li>pasta de assets vazia;</li>
+        <li>nomes das imagens sem correspondencia com os nomes das academias;</li>
+        <li>uso de fallback local sem imagem equivalente.</li>
+      </ul>
+
+      <h3>14.4 O login falha</h3>
+      <ul>
+        <li>verificar se as credenciais usadas sao exatamente teste e teste;</li>
+        <li>confirmar se a tabela usuarios existe;</li>
+        <li>confirmar se o backend consegue acessar o projeto Supabase.</li>
+      </ul>
+
+      <h1>15. CONCLUSAO</h1>
+      <p>
+        O Academia Finder atende ao objetivo academico de demonstrar uma aplicacao web integrada, com interface moderna,
+        consumo de API, persistencia de dados e recursos de geolocalizacao. Sob a perspectiva do usuario, o sistema oferece
+        fluxo simples para busca, comparacao, agendamento e avaliacao de academias.
+      </p>
+
+      <h1>16. REFERENCIAS</h1>
+      <p class="no-indent">OPENJS FOUNDATION. <strong>Node.js</strong>. Disponivel em: &lt;https://nodejs.org/&gt;. Acesso em: 5 abr. 2026.</p>
+      <p class="no-indent">REACT TEAM. <strong>React</strong>. Disponivel em: &lt;https://react.dev/&gt;. Acesso em: 5 abr. 2026.</p>
+      <p class="no-indent">VITE TEAM. <strong>Vite</strong>. Disponivel em: &lt;https://vite.dev/&gt;. Acesso em: 5 abr. 2026.</p>
+      <p class="no-indent">EXPRESS. <strong>Express - Node.js web application framework</strong>. Disponivel em: &lt;https://expressjs.com/&gt;. Acesso em: 5 abr. 2026.</p>
+      <p class="no-indent">SUPABASE. <strong>Supabase Documentation</strong>. Disponivel em: &lt;https://supabase.com/docs&gt;. Acesso em: 5 abr. 2026.</p>
+      <p class="no-indent">CLOUDINARY. <strong>Cloudinary Documentation</strong>. Disponivel em: &lt;https://cloudinary.com/documentation&gt;. Acesso em: 5 abr. 2026.</p>
+      <p class="no-indent">OPENSTREETMAP FOUNDATION. <strong>OpenStreetMap</strong>. Disponivel em: &lt;https://www.openstreetmap.org/&gt;. Acesso em: 5 abr. 2026.</p>
+      <p class="no-indent">OPENLAYERS. <strong>OpenLayers Documentation</strong>. Disponivel em: &lt;https://openlayers.org/&gt;. Acesso em: 5 abr. 2026.</p>
+    </section>
+  </main>
+</body>
+</html>
