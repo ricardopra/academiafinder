@@ -2,6 +2,8 @@
 
 # UNIVERSIDADE PRESBITERIANA MACKENZIE
 
+> Observacao: ajuste textual simples realizado no branch `iteracao2` para exercicio de Git.
+
 ## Curso de Analise e Desenvolvimento de Sistemas
 
 ### Academia Finder: guia do usuario e documentacao tecnico-funcional
