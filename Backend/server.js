@@ -18,6 +18,21 @@ app.get('/', (req, res) => {
   res.send('Backend funcionando')
 })
 
+const EMAIL_USUARIO_DEMO = 'teste@academiafinder.local'
+
+function criarUsuarioDemoFallback() {
+  return {
+    id: 'demo-offline',
+    nome: 'Teste',
+    email: EMAIL_USUARIO_DEMO,
+  }
+}
+
+function erroDeRedeSupabase(error) {
+  const mensagem = String(error?.message || '').toLowerCase()
+  return mensagem.includes('fetch failed') || mensagem.includes('network') || mensagem.includes('socket')
+}
+
 async function seedAcademiasFicticias() {
   const academiasSeed = [
     { nome: 'Iron Forge', endereco: 'Rua Funchal, 418 - Itaim Bibi, Sao Paulo - SP', preco: 120 },
@@ -56,15 +71,21 @@ app.post('/auth/login', async (req, res) => {
       return res.status(401).json({ erro: 'Login ou senha invalidos.' })
     }
 
-    const emailPadrao = 'teste@academiafinder.local'
-
     const { data: usuarioExistente, error: erroBusca } = await supabase
       .from('usuarios')
       .select('*')
-      .eq('email', emailPadrao)
+      .eq('email', EMAIL_USUARIO_DEMO)
       .maybeSingle()
 
     if (erroBusca) {
+      if (erroDeRedeSupabase(erroBusca)) {
+        console.warn('Supabase indisponivel no login; usando usuario demo offline.', erroBusca.message)
+        return res.status(200).json({
+          token: 'teste-session-token',
+          usuario: criarUsuarioDemoFallback(),
+          modo_offline: true,
+        })
+      }
       return res.status(500).json({ erro: erroBusca.message })
     }
 
@@ -73,11 +94,19 @@ app.post('/auth/login', async (req, res) => {
     if (!usuario) {
       const { data: criado, error: erroCriacao } = await supabase
         .from('usuarios')
-        .insert([{ nome: 'Teste', email: emailPadrao }])
+        .insert([{ nome: 'Teste', email: EMAIL_USUARIO_DEMO }])
         .select()
         .single()
 
       if (erroCriacao) {
+        if (erroDeRedeSupabase(erroCriacao)) {
+          console.warn('Supabase indisponivel ao criar usuario demo; usando fallback offline.', erroCriacao.message)
+          return res.status(200).json({
+            token: 'teste-session-token',
+            usuario: criarUsuarioDemoFallback(),
+            modo_offline: true,
+          })
+        }
         return res.status(500).json({ erro: erroCriacao.message })
       }
 
@@ -85,7 +114,17 @@ app.post('/auth/login', async (req, res) => {
     }
 
     return res.status(200).json({ token: 'teste-session-token', usuario })
-  } catch {
+  } catch (error) {
+    if (erroDeRedeSupabase(error)) {
+      console.warn('Falha de rede inesperada no login; usando usuario demo offline.', error.message)
+      return res.status(200).json({
+        token: 'teste-session-token',
+        usuario: criarUsuarioDemoFallback(),
+        modo_offline: true,
+      })
+    }
+
+    console.error('Erro interno ao autenticar usuario:', error)
     return res.status(500).json({ erro: 'Erro interno ao autenticar usuario.' })
   }
 })
