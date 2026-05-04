@@ -2,6 +2,8 @@
 
 # UNIVERSIDADE PRESBITERIANA MACKENZIE
 
+> Observacao: ajuste textual simples realizado no branch `iteracao2` para exercicio de Git.
+
 ## Curso de Analise e Desenvolvimento de Sistemas
 
 ### Academia Finder: guia do usuario e documentacao tecnico-funcional
@@ -483,3 +485,36 @@ CLOUDINARY. Cloudinary Documentation. Disponivel em: <https://cloudinary.com/doc
 OPENSTREETMAP FOUNDATION. OpenStreetMap. Disponivel em: <https://www.openstreetmap.org/>. Acesso em: 5 abr. 2026.
 
 OPENLAYERS. OpenLayers Documentation. Disponivel em: <https://openlayers.org/>. Acesso em: 5 abr. 2026.
+
+## 17. Registro da atividade Git
+
+Em 4 maio 2026 foi executado um exercicio de versionamento neste repositorio, sem apagar arquivos e sem alterar a logica principal do projeto.
+
+Resumo da atividade:
+
+- criada a tag `v1` apontando para o estado atual do branch `master`;
+- criado o branch `iteracao2` a partir de `master`;
+- realizadas pequenas alteracoes textuais em `README.md` e `Frontend/README.md`;
+- criado commit de exercicio no branch `iteracao2`;
+- realizado merge de `iteracao2` em `master`;
+- preservado o branch `iteracao2` apos o merge.
+
+Comandos executados:
+
+```bash
+git checkout main
+git branch master
+git checkout master
+git tag v1
+git checkout -b iteracao2
+git add README.md Frontend/README.md
+git commit -m "Add exercise-only text updates"
+git checkout master
+git merge iteracao2
+```
+
+Estado final esperado:
+
+- `master` contem o merge do exercicio;
+- `iteracao2` permanece disponivel;
+- a tag `v1` referencia o commit base do exercicio.
